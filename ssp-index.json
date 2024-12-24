@@ -1,0 +1,10 @@
+{
+    "test-ssp-001": {
+        "profile": "nist_rev5_800_53",
+        "component_definitions": [
+            "test-comp-001"
+        ],
+        "leveraged_ssp": null,
+        "yaml_header_path": null
+    }
+}
