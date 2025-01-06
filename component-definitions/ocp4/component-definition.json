@@ -1,0 +1,1653 @@
+{
+  "component-definition": {
+    "uuid": "119b6f0a-50f4-4573-b332-f0f5880ee84d",
+    "metadata": {
+      "title": "Component definition for ocp4",
+      "last-modified": "2025-01-06T17:18:33.518979+08:00",
+      "version": "REPLACE_ME",
+      "oscal-version": "1.1.2"
+    },
+    "components": [
+      {
+        "uuid": "1c2438df-2656-4504-a6c8-108c13e516bb",
+        "type": "service",
+        "title": "ocp4",
+        "description": "ocp4",
+        "props": [
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "accounts_restrict_service_account_tokens",
+            "remarks": "rule_set_000"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Service accounts tokens should not be mounted in pods except where the workload running in the pod explicitly needs to communicate with the API server. To ensure pods do not automatically mount tokens, set <tt>automountServiceAccountToken</tt> to <tt>false</tt>.",
+            "remarks": "rule_set_000"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "accounts_unique_service_account",
+            "remarks": "rule_set_001"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Using the <tt>default</tt> service account prevents accurate application rights review and audit tracing. Instead of <tt>default</tt>, create a new and unique service account with the following command: <pre>$ oc create sa <i>service_account_name</i></pre> where <i>service_account_name</i> is the name of a service account that is needed in the project namespace.",
+            "remarks": "rule_set_001"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "alert_receiver_configured",
+            "remarks": "rule_set_002"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "In OpenShift Container Platform, an alert is fired when the conditions defined in an alerting rule are true. An alert provides a notification that a set of circumstances are apparent within a cluster. Firing alerts can be viewed in the Alerting UI in the OpenShift Container Platform web console by default. After an installation, you can configure OpenShift Container Platform to send alert notifications to external systems so that designate personnel can be alerted in real time. OpenShift provides multiple alert receivers integrations to send realtime alerts to different services such as email, slack, pagerduty, webhooks, etc. [1][2] [1]https://docs.openshift.com/container-platform/latest/post_installation_configuration/configuring-alert-notifications.html#configuring-alert-receivers_configuring-alert-notifications [2]https://docs.openshift.com/container-platform/latest/monitoring/managing-alerts.html#applying-custom-alertmanager-configuration_managing-alerts",
+            "remarks": "rule_set_002"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_admission_control_plugin_alwaysadmit",
+            "remarks": "rule_set_003"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure OpenShift only responses to requests explicitly allowed by the admission control plugin. Check that the <code>config</code> ConfigMap object does not contain the AlwaysAdmit plugin.",
+            "remarks": "rule_set_003"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_admission_control_plugin_alwayspullimages",
+            "remarks": "rule_set_004"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The <tt>AlwaysPullImages</tt> admission control plugin should be disabled, since it can introduce new failure modes for control plane components if an image registry is unreachable.",
+            "remarks": "rule_set_004"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_admission_control_plugin_namespacelifecycle",
+            "remarks": "rule_set_005"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift enables the <tt>NamespaceLifecycle</tt> plugin by default.",
+            "remarks": "rule_set_005"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_admission_control_plugin_noderestriction",
+            "remarks": "rule_set_006"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To limit the <tt>Node</tt> and <tt>Pod</tt> objects that a kubelet could modify, ensure that the <tt>NodeRestriction</tt> plugin on kubelets is enabled in the api-server configuration by running the following command: <pre>$ oc -n openshift-kube-apiserver get configmap config -o json | jq -r '.data.\"config.yaml\"' | jq '.apiServerArguments.\"enable-admission-plugins\"'</pre>",
+            "remarks": "rule_set_006"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_admission_control_plugin_scc",
+            "remarks": "rule_set_007"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure pod permissions are managed, make sure that the <tt>SecurityContextConstraint</tt> admission control plugin is used.",
+            "remarks": "rule_set_007"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_admission_control_plugin_securitycontextdeny",
+            "remarks": "rule_set_008"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Instead of using a customized SecurityContext for pods, a Pod Security Policy (PSP) or a SecurityContextConstraint should be used. These are cluster-level resources that control the actions that a pod can perform and what resource the pod may access. The <tt>SecurityContextDeny</tt> disallows folks from setting a pod's <tt>securityContext</tt> fields. Ensure that the list of admission controllers does not include SecurityContextDeny: <pre>$ oc -n openshift-kube-apiserver get configmap config -o json | jq -r '.data.\"config.yaml\"' | jq '.apiServerArguments.\"enable-admission-plugins\"' </pre>",
+            "remarks": "rule_set_008"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_admission_control_plugin_service_account",
+            "remarks": "rule_set_009"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure <tt>ServiceAccount</tt> objects must be created and granted before pod creation is allowed, follow the documentation and create <tt>ServiceAccount</tt> objects as per your environment. Ensure that the plugin is enabled in the api-server configuration: <pre>$ oc -n openshift-kube-apiserver get configmap config -o json | jq -r '.data.\"config.yaml\"' | jq '.apiServerArguments.\"enable-admission-plugins\"'</pre>",
+            "remarks": "rule_set_009"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_anonymous_auth",
+            "remarks": "rule_set_010"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "By default, anonymous access to the OpenShift API is enabled, but at the same time, all requests must be authorized. If no authentication mechanism is used, the request is assigned the <tt>system:anonymous</tt> virtual user and the <tt>system:unauthenticated</tt> virtual group. This allows the authorization layer to determine which requests, if any, is an anonymous user authorized to make. To verify the authorization rules for anonymous requests run the following: <pre>$ oc describe clusterrolebindings</pre> and inspect the bindings of the <tt>system:anonymous</tt> virtual user and the <tt>system:unauthenticated</tt> virtual group. To test that an anonymous request is authorized to access the <tt>readyz</tt> endpoint, run: <pre>$ oc get --as=\"system:anonymous\" --raw='/readyz?verbose'</pre> In contrast, a request to list all projects should not be authorized: <pre>$ oc get --as=\"system:anonymous\" projects</pre>",
+            "remarks": "rule_set_010"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_api_priority_flowschema_catch_all",
+            "remarks": "rule_set_011"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Using <tt>APIPriorityAndFairness</tt> feature provides a fine-grained way to control the behaviour of the Kubernetes API server in an overload situation. The well-known FlowSchema <tt>catch-all</tt> should be available to make sure that every request gets some kind of classification. By default, the <tt>catch-all</tt> priority level only allows one concurrency share and does not queue requests. To inspect all the <tt>FlowSchema</tt> objects, run: <pre>oc get flowschema</pre> To inspect the well-known <tt>catch-all</tt> object, run the following: <pre>oc describe flowschema catch-all</pre>",
+            "remarks": "rule_set_011"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_audit_log_maxbackup",
+            "remarks": "rule_set_012"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To configure how many rotations of audit logs are retained, edit the <tt>openshift-kube-apiserver</tt> configmap and set the <tt>audit-log-maxbackup</tt> parameter to <tt>10</tt> or to an organizationally appropriate value: <pre> \"apiServerArguments\":{ ... \"audit-log-maxbackup\": [10], ... </pre>",
+            "remarks": "rule_set_012"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_audit_log_maxsize",
+            "remarks": "rule_set_013"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To rotate audit logs upon reaching a maximum size, edit the <tt>openshift-kube-apiserver</tt> configmap and set the <tt>audit-log-maxsize</tt> parameter to an appropriate size in MB. For example, to set it to 100 MB: <pre> \"apiServerArguments\":{ ... \"audit-log-maxsize\": [\"100\"], ... </pre>",
+            "remarks": "rule_set_013"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_audit_log_path",
+            "remarks": "rule_set_014"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To enable auditing on the Kubernetes API Server, the audit log path must be set. Edit the <tt>openshift-kube-apiserver</tt> configmap and set the <tt>audit-log-path</tt> to a suitable path and file where audit logs should be written. For example: <pre> \"apiServerArguments\":{ ... \"audit-log-path\":\"/var/log/kube-apiserver/audit.log\", ... </pre>",
+            "remarks": "rule_set_014"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_auth_mode_no_aa",
+            "remarks": "rule_set_015"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Do not always authorize all requests.",
+            "remarks": "rule_set_015"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_auth_mode_node",
+            "remarks": "rule_set_016"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Restrict kubelet nodes to reading only objects associated with them.",
+            "remarks": "rule_set_016"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_auth_mode_rbac",
+            "remarks": "rule_set_017"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure OpenShift restricts different identities to a defined set of operations they are allowed to perform, check that the API server's <tt>authorization-mode</tt> configuration option list contains RBAC.",
+            "remarks": "rule_set_017"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_basic_auth",
+            "remarks": "rule_set_018"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Basic Authentication should not be used for any reason. If needed, edit API Edit the <tt>openshift-kube-apiserver</tt> configmap and remove the <tt>basic-auth-file</tt> parameter: <pre> \"apiServerArguments\":{ ... \"basic-auth-file\":[ \"/path/to/any/file\" ], ... </pre> Alternate authentication mechanisms such as tokens and certificates will need to be used. Username and password for basic authentication will be disabled.",
+            "remarks": "rule_set_018"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_bind_address",
+            "remarks": "rule_set_019"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The bindAddress is set by default to <tt>0.0.0.0:6443</tt>, and listening with TLS enabled.",
+            "remarks": "rule_set_019"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_client_ca",
+            "remarks": "rule_set_020"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Certificates must be provided to fully setup TLS client certificate authentication. To ensure the API Server utilizes its own TLS certificates, the <tt>clientCA</tt> must be configured. Verify that <tt>servingInfo</tt> has the <tt>clientCA</tt> configured in the <tt>openshift-kube-apiserver</tt> <tt>config</tt> configmap to something similar to: <pre> \"apiServerArguments\": { ... \"client-ca-file\": [ \"/etc/kubernetes/static-pod-certs/configmaps/client-ca/ca-bundle.crt\" ], ... </pre>",
+            "remarks": "rule_set_020"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_encryption_provider_cipher",
+            "remarks": "rule_set_021"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> When you enable etcd encryption, the following OpenShift API server and Kubernetes API server resources are encrypted: <ul> <li>Secrets</li> <li>ConfigMaps</li> <li>Routes</li> <li>OAuth access tokens</li> <li>OAuth authorize tokens</li> </ul> </p> <p> When you enable etcd encryption, encryption keys are created. These keys are rotated on a weekly basis. You must have these keys in order to restore from an etcd backup. </p> <p> To ensure the correct cipher, set the encryption type to <tt>aescbc</tt> or <tt>aesgcm</tt> in the <tt>apiserver</tt> object which configures the API server itself. <pre> spec: encryption: type: aescbc </pre> </p> <p> For more information, follow <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/security/encrypting-etcd.html'>the relevant documentation</a>. </p>",
+            "remarks": "rule_set_021"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_etcd_ca",
+            "remarks": "rule_set_022"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure etcd is configured to make use of TLS encryption for client connections, follow the OpenShift documentation and setup the TLS connection between the API Server and etcd. Then, verify that <tt>apiServerArguments</tt> has the <tt>etcd-cafile</tt> configured in the <tt>openshift-kube-apiserver</tt> <tt>config</tt> configmap to something similar to: <pre> \"apiServerArguments\": { ... \"etcd-cafile\": [ \"/etc/kubernetes/static-pod-resources/configmaps/etcd-serving-ca/ca-bundle.crt\" ], ... </pre>",
+            "remarks": "rule_set_022"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_etcd_cert",
+            "remarks": "rule_set_023"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure etcd is configured to make use of TLS encryption for client communications, follow the OpenShift documentation and setup the TLS connection between the API Server and etcd. Then, verify that <tt>apiServerArguments</tt> has the <tt>etcd-certfile</tt> configured in the <tt>openshift-kube-apiserver</tt> configmap to something similar to: <pre> ... \"etcd-certfile\": [ \"/etc/kubernetes/static-pod-resources/secrets/etcd-client/tls.crt\" ], ... </pre>",
+            "remarks": "rule_set_023"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_etcd_key",
+            "remarks": "rule_set_024"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure etcd is configured to make use of TLS encryption for client communications, follow the OpenShift documentation and setup the TLS connection between the API Server and etcd. Then, verify that <tt>apiServerArguments</tt> has the <tt>etcd-keyfile</tt> configured in the <tt>openshift-kube-apiserver</tt> configmap to something similar to: <pre> ... \"etcd-keyfile\": [ \"/etc/kubernetes/static-pod-resources/secrets/etcd-client/tls.key\" ], ... </pre>",
+            "remarks": "rule_set_024"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_https_for_kubelet_conn",
+            "remarks": "rule_set_025"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The kube-apiserver ensures https to the kubelet by default. The apiserver flag \"--kubelet-https\" is deprecated and should be either set to \"true\" or omitted from the argument list.",
+            "remarks": "rule_set_025"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_insecure_bind_address",
+            "remarks": "rule_set_026"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift should not bind to non-loopback insecure addresses. Edit the <tt>openshift-kube-apiserver</tt> configmap and remove the <tt>insecure-bind-address</tt> if it exists: <pre> \"apiServerArguments\":{ ... \"insecure-bind-address\":[ \"127.0.0.1\" ], ... </pre>",
+            "remarks": "rule_set_026"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_kubelet_certificate_authority",
+            "remarks": "rule_set_027"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure OpenShift verifies kubelet certificates before establishing connections, follow the OpenShift documentation and setup the TLS connection between the API Server and kubelets. Edit the <tt>openshift-kube-apiserver</tt> configmap and set the below parameter if it is not already configured: <pre> \"apiServerArguments\":{ ... \"kubelet-certificate-authority\":\"/etc/kubernetes/static-pod-resources/configmaps/kubelet-serving-ca/ca-bundle.crt\", ... </pre>",
+            "remarks": "rule_set_027"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_kubelet_client_cert",
+            "remarks": "rule_set_028"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To enable certificate based kubelet authentication, edit the <tt>config</tt> configmap in the <tt>openshift-kube-apiserver</tt> namespace and set the below parameter in the <tt>config.yaml</tt> key if it is not already configured: <pre> \"apiServerArguments\":{ ... \"kubelet-client-certificate\":\"/etc/kubernetes/static-pod-resources/secrets/kubelet-client/tls.crt\", ... } </pre>",
+            "remarks": "rule_set_028"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_kubelet_client_cert_pre_4_9",
+            "remarks": "rule_set_029"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To enable certificate based kubelet authentication, edit the <tt>config</tt> configmap in the <tt>openshift-kube-apiserver</tt> namespace and set the below parameter in the <tt>config.yaml</tt> key if it is not already configured: <pre> \"apiServerArguments\":{ ... \"kubelet-client-certificate\":\"/etc/kubernetes/static-pod-resources/secrets/kubelet-client/tls.crt\", ... } </pre> <pre> Note that this particular rule is only valid for OCP releases up to and including 4.8 </pre>",
+            "remarks": "rule_set_029"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_kubelet_client_key",
+            "remarks": "rule_set_030"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To enable certificate based kubelet authentication, edit the <tt>config</tt> configmap in the <tt>openshift-kube-apiserver</tt> namespace and set the below parameter in the <tt>config.yaml</tt> key if it is not already configured: <pre> \"apiServerArguments\":{ ... \"kubelet-client-key\":\"/etc/kubernetes/static-pod-resources/secrets/kubelet-client/tls.key\", ... } </pre>",
+            "remarks": "rule_set_030"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_kubelet_client_key_pre_4_9",
+            "remarks": "rule_set_031"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To enable certificate based kubelet authentication, edit the <tt>config</tt> configmap in the <tt>openshift-kube-apiserver</tt> namespace and set the below parameter in the <tt>config.yaml</tt> key if it is not already configured: <pre> \"apiServerArguments\":{ ... \"kubelet-client-key\":\"/etc/kubernetes/static-pod-resources/secrets/kubelet-client/tls.key\", ... } </pre> <pre> Note that this particular rule is only valid for OCP releases up to and including 4.8 </pre>",
+            "remarks": "rule_set_031"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_no_adm_ctrl_plugins_disabled",
+            "remarks": "rule_set_032"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To make sure none of them is explicitly disabled except PodSecurity, run the following command: <pre>$ oc -n openshift-kube-apiserver get configmap config -o json | jq -r '[.data.\"config.yaml\" | fromjson | .apiServerArguments | select(has(\"disable-admission-plugins\")) | if .\"disable-admission-plugins\" != [\"PodSecurity\"] then .\"disable-admission-plugins\" else empty end]'</pre> and make sure the output is empty.",
+            "remarks": "rule_set_032"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_oauth_https_serving_cert",
+            "remarks": "rule_set_033"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "By default, the OpenShift OAuth API Server uses TLS. HTTPS should be used for connections between openshift-oauth-apiserver and kube-apiserver. By default, the OpenShift OAuth API Server uses Intermediate profile which requires a minimum TLS version of 1.2.",
+            "remarks": "rule_set_033"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_openshift_https_serving_cert",
+            "remarks": "rule_set_034"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "By default, the OpenShift API Server uses TLS. HTTPS should be used for connections between openshift-apiserver and kube-apiserver. By default, the OpenShift OAuth API Server uses Intermediate profile which requires a minimum TLS version of 1.2.",
+            "remarks": "rule_set_034"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_profiling_protected_by_rbac",
+            "remarks": "rule_set_035"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Ensure that the cluster-debugger cluster role includes the /metrics resource URL. This demonstrates that profiling is protected by RBAC, with a specific cluster role to allow access.",
+            "remarks": "rule_set_035"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_request_timeout",
+            "remarks": "rule_set_036"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The API server minimum request timeout defines the minimum number of seconds a handler must keep a request open before timing it out. To set this, edit the <tt>openshift-kube-apiserver</tt> configmap and set <tt>min-request-timeout</tt> under the <tt>apiServerArguments</tt> field: <pre> \"apiServerArguments\":{ ... \"min-request-timeout\":[ <sub idref=\"var_api_min_request_timeout\" /> ], ... </pre>",
+            "remarks": "rule_set_036"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_service_account_lookup",
+            "remarks": "rule_set_037"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Validate service account before validating token.",
+            "remarks": "rule_set_037"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_service_account_public_key",
+            "remarks": "rule_set_038"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the API Server utilizes its own key pair, edit the <tt>openshift-kube-apiserver</tt> configmap and set the <tt>serviceAccountPublicKeyFiles</tt> parameter to the public key file for service accounts: <pre> ... \"serviceAccountPublicKeyFiles\":[ \"/etc/kubernetes/static-pod-resources/configmaps/sa-token-signing-certs\" ], ... </pre>",
+            "remarks": "rule_set_038"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_tls_cert",
+            "remarks": "rule_set_039"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the API Server utilizes its own TLS certificates, the <tt>tls-cert-file</tt> must be configured. Verify that the <tt>apiServerArguments</tt> section has the <tt>tls-cert-file</tt> configured in the <tt>config</tt> configmap in the <tt>openshift-kube-apiserver</tt> namespace similar to: <pre> \"apiServerArguments\":{ ... \"tls-cert-file\": [ \"/etc/kubernetes/static-pod-certs/secrets/service-network-serving-certkey/tls.crt\" ], ... } </pre>",
+            "remarks": "rule_set_039"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_tls_cipher_suites",
+            "remarks": "rule_set_040"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure that the API Server is configured to only use strong cryptographic ciphers, verify the <tt>openshift-kube-apiserver</tt> configmap contains the following set of ciphers, with no additions: <pre> \"servingInfo\":{ ... \"cipherSuites\": [ \"TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256\", \"TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256\", \"TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384\", \"TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384\", \"TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305_SHA256\", \"TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305_SHA256\", ], ... </pre>",
+            "remarks": "rule_set_040"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_tls_private_key",
+            "remarks": "rule_set_041"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the API Server utilizes its own TLS certificates, the <tt>tls-private-key-file</tt> must be configured. Verify that the <tt>apiServerArguments</tt> section has the <tt>tls-private-key-file</tt> configured in the <tt>config</tt> configmap in the <tt>openshift-kube-apiserver</tt> namespace similar to: <pre> \"apiServerArguments\":{ ... \"tls-private-key-file\": [ \"/etc/kubernetes/static-pod-certs/secrets/service-network-serving-certkey/tls.key\" ], ... } </pre>",
+            "remarks": "rule_set_041"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_tls_security_profile",
+            "remarks": "rule_set_042"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> The configuration <tt>tlsSecurityProfile</tt> specifies TLS configurations to be used while establishing connections with the externally exposed servers. Though secure transport mode is used for establishing connections, the protocols used may not always be strong enough to avoid interception and manipulation of the data in transport. TLS Security profile configured should not make use of any protocols, ciphers, and algorithms with known security vulnerabilities. </p> <p> <tt>tlsSecurityProfile</tt> can be configured to use one of custom, intermediate, modern, or old profile. Profile Old should be avoided at all times and when using custom profile one should be extremely careful as invalid configurations can be catastrophic. It is always advised to use highly secure intermediate or modern profiles and if unset a default is chosen. </p> <p> Update tlsSecurityProfile to Intermediate using the following command: <pre>oc patch apiservers.config.openshift.io cluster --type 'json' --patch '[{\"op\": \"add\", \"path\": \"/spec/tlsSecurityProfile/intermediate\", \"value\": {}}, {\"op\": \"replace\", \"path\": \"/spec/tlsSecurityProfile/type\", \"value\": \"Intermediate\"}'</pre> </p> <p> For more information, follow OpenShift documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/security/tls-security-profiles.html'>the relevant documentation</a>. </p>",
+            "remarks": "rule_set_042"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "api_server_token_auth",
+            "remarks": "rule_set_043"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure OpenShift does not accept token-based authentication, follow the OpenShift documentation and configure alternate mechanisms for authentication. Then, edit the API Server pod specification file Edit the <tt>openshift-kube-apiserver</tt> configmap and remove the <tt>token-auth-file</tt> parameter: <pre> \"apiServerArguments\":{ ... \"token-auth-file\":[ \"/path/to/any/file\" ], ... </pre>",
+            "remarks": "rule_set_043"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "audit_error_alert_exists",
+            "remarks": "rule_set_044"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> OpenShift audit works at the API server level, logging all requests coming to the server. However, if API server instance is unable to write errors, an alert must be issued in order for the organization to take a relevant action. e.g. shutting down that instance. </p> <p> Kubernetes by default has metrics that enable one to write such alerts: </p> <ul> <li><tt>apiserver_audit_event_total</tt></li> <li><tt>apiserver_audit_error_total</tt></li> </ul> Such an example is shipped in OCP 4.9+ <pre> apiVersion: monitoring.coreos.com/v1 kind: PrometheusRule metadata: name: audit-errors namespace: openshift-kube-apiserver spec: groups: - name: apiserver-audit rules: - alert: AuditLogError annotations: summary: |- An API Server instance was unable to write audit logs. This could be triggered by the node running out of space, or a malicious actor tampering with the audit logs. description: An API Server had an error writing to an audit log. expr: | sum by (apiserver,instance)(rate(apiserver_audit_error_total{apiserver=~\".+-apiserver\"}[5m])) / sum by (apiserver,instance) (rate(apiserver_audit_event_total{apiserver=~\".+-apiserver\"}[5m])) > 0 for: 1m labels: severity: warning </pre> <p> For more information, consult the <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/logging/cluster-logging-external.html'>official Kubernetes documentation</a>. </p>",
+            "remarks": "rule_set_044"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "audit_log_forwarding_enabled",
+            "remarks": "rule_set_045"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift audit works at the API server level, logging all requests coming to the server. Audit is on by default and the best practice is to ship audit logs off the cluster for retention. The cluster-logging-operator is able to do this with the <pre>ClusterLogForwarders</pre> resource. The forementioned resource can be configured to logs to different third party systems. For more information on this, please reference the official documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/observability/logging/logging-6.0/log6x-clf.html'>https://docs.openshift.com/container-platform/latest/observability/logging/logging-6.0/log6x-clf.html</a>",
+            "remarks": "rule_set_045"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "audit_log_forwarding_uses_tls",
+            "remarks": "rule_set_046"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> OpenShift audit works at the API server level, logging all requests coming to the server. Audit is on by default and the best practice is to ship audit logs off the cluster for retention using a secure protocol. </p> <p> The cluster-logging-operator is able to do this with the <pre>ClusterLogForwarders</pre> resource. The forementioned resource can be configured to logs to different third party systems. For more information on this, please reference the official documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/observability/logging/logging-6.0/log6x-clf.html'>https://docs.openshift.com/container-platform/latest/observability/logging/logging-6.0/log6x-clf.html</a> </p>",
+            "remarks": "rule_set_046"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "audit_log_forwarding_webhook",
+            "remarks": "rule_set_047"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Audit is on by default and the best practice is to ship audit logs off an cluster for retention. HyperShift is able to do this with the a audit webhook, which is configured in the HostedCluster custom resource. The forementioned resource can be configured to log to different third party systems. For more information on this, please reference the official documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://hypershift-docs.netlify.app/reference/api/'>https://hypershift-docs.netlify.app/reference/api/</a>",
+            "remarks": "rule_set_047"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "audit_logging_enabled",
+            "remarks": "rule_set_048"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift has the ability to audit API server requests. Audit provides a security-relevant chronological set of records documenting the sequence of activities that have affected system by individual users, administrators, or other components of the system. Audit works at the API server level, logging all requests coming to the server. Verify that audit logging is enabled by checking that the API server audit log configuration is not set to `None`, which explicitly disables the functionality. For more information on how to configure the audit profile, please visit <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/security/audit-log-policy-config.html'>the documentation</a>",
+            "remarks": "rule_set_048"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "audit_profile_set",
+            "remarks": "rule_set_049"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> OpenShift can audit the details of requests made to the API server through the standard Kubernetes audit capabilities. </p> <p> In OpenShift, auditing of the API Server is on by default. Audit provides a security-relevant chronological set of records documenting the sequence of activities that have affected system by individual users, administrators, or other components of the system. Audit works at the API server level, logging all requests coming to the server. Each audit log contains two entries: </p> <p> The request line containing: </p> <ul> <li>A Unique ID allowing to match the response line (see #2)</li> <li>The source IP of the request</li> <li>The HTTP method being invoked</li> <li>The original user invoking the operation</li> <li>The impersonated user for the operation (self meaning himself)</li> <li>The impersonated group for the operation (lookup meaning user's group)</li> <li>The namespace of the request or none</li> <li>The URI as requested</li> </ul> <p> The response line containing: </p> <ul> <li>The aforementioned unique ID</li> <li>The response code</li> </ul> <p> For more information on how to configure the audit profile, please visit <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/security/audit-log-policy-config.html'>the documentation</a> </p>",
+            "remarks": "rule_set_049"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "banner_or_login_template_set",
+            "remarks": "rule_set_050"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "A legal notice must be configured. <br/> This is achievable via the OAuth object by creating a custom login page, storing it in a Kubernetes Secret and referencing it in the appropriate field as <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/web_console/customizing-the-web-console.html#customizing-the-login-page_customizing-web-console'>described in the documentation</a> <br/> Another way of achieving this is via a custom classification banner which is possible to set via the ConsoleNotification CRD as <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.7/web_console/customizing-the-web-console.html#creating-custom-notification-banners_customizing-web-console'>described in the documentation</a>",
+            "remarks": "rule_set_050"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "cluster_logging_operator_exist",
+            "remarks": "rule_set_051"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift Logging Operator provides ability to aggregate all the logs from the OpenShift Container Platform cluster, such as node system audit logs, application container logs, and infrastructure logs. OpenShift Logging aggregates these logs from throughout OpenShift cluster and stores them in a default log store. [1] [1]https://docs.openshift.com/container-platform/latest/observability/logging/logging-6.0/log6x-about.html",
+            "remarks": "rule_set_051"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "cluster_version_operator_exists",
+            "remarks": "rule_set_052"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Integrity of the OpenShift platform is handled to start by the cluster version operator. Cluster Version Operator will by default GPG verify the integrity of the release image before applying it. [1] This rule checks if Cluster Version Operator is deployed and available in the system. [1] https://github.com/openshift/machine-config-operator/blob/master/docs/OSUpgrades.md#questions-and-answers",
+            "remarks": "rule_set_052"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "cluster_version_operator_verify_integrity",
+            "remarks": "rule_set_053"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Integrity of the OpenShift platform is handled to start by the cluster version operator. Cluster Version Operator will by default GPG verify the integrity of the release image before applying it. This rule check if there is an unverified cluster image.",
+            "remarks": "rule_set_053"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "cluster_wide_proxy_set",
+            "remarks": "rule_set_054"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> Production environments can deny direct access to the Internet and instead have an HTTP or HTTPS proxy available. </p> <p> The Proxy object is used to manage the cluster-wide egress proxy. Setting this will ensure that containers get the appropriate environment variables set to ensure traffic goes to the proxy per organizational requirements. </p> <p> For more information, see <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/networking/enable-cluster-wide-proxy.html'>the relevant documentation.</a> </p>",
+            "remarks": "rule_set_054"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "compliance_notification_enabled",
+            "remarks": "rule_set_055"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The OpenShift platform provides the Compliance Operator for administrators to monitor compliance state of a cluster and provides them with an overview of gaps and ways to remediate them, and this control ensures proper notification alert is enabled for Compliance Operator so that system administrators and security personnel are notified about the alerts on compliance status.",
+            "remarks": "rule_set_055"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "configure_network_policies",
+            "remarks": "rule_set_056"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "There are a variety of CNI plugins available for Kubernetes. If the CNI in use does not support Network Policies it may not be possible to effectively restrict traffic in the cluster. OpenShift supports Kubernetes NetworkPolicy using a Kubernetes Container Network Interface (CNI) plug-in.",
+            "remarks": "rule_set_056"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "configure_network_policies_hypershift_hosted",
+            "remarks": "rule_set_057"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Use network policies to isolate traffic in your cluster network.",
+            "remarks": "rule_set_057"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "configure_network_policies_namespaces",
+            "remarks": "rule_set_058"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Use network policies to isolate traffic in your cluster network.",
+            "remarks": "rule_set_058"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "controller_insecure_port_disabled",
+            "remarks": "rule_set_059"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the Controller Manager service is bound to secure loopback address and a secure port, set the <tt>RotateKubeletServerCertificate</tt> option to <tt>true</tt> in the <tt>openshift-kube-controller-manager</tt> configmap on the master node(s): <pre> \"extendedArguments\": { ... \"port\": [\"0\"], ... </pre> It is also acceptable for a system to deprecate the insecure port: <pre> \"extendedArguments\": { ... ... </pre>",
+            "remarks": "rule_set_059"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "controller_rotate_kubelet_server_certs",
+            "remarks": "rule_set_060"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To enforce kubelet server certificate rotation on the Controller Manager, set the <tt>RotateKubeletServerCertificate</tt> option to <tt>true</tt> in the <tt>openshift-kube-controller-manager</tt> configmap on the master node(s): <pre> \"extendedArguments\": { ... \"feature-gates\": [ ... \"RotateKubeletServerCertificate=true\", ... ... </pre> This feature gate is enabled by default as of Kubernetes 1.12.",
+            "remarks": "rule_set_060"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "controller_secure_port",
+            "remarks": "rule_set_061"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the Controller Manager service is bound to secure loopback address using a secure port, set the <tt>RotateKubeletServerCertificate</tt> option to <tt>true</tt> in the <tt>openshift-kube-controller-manager</tt> configmap on the master node(s): <pre> \"extendedArguments\": { ... \"secure-port\": [\"10257\"], ... </pre>",
+            "remarks": "rule_set_061"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "controller_service_account_ca",
+            "remarks": "rule_set_062"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the API Server utilizes its own key pair, set the <tt>masterCA</tt> parameter to the public key file for service accounts in the <tt>openshift-kube-controller-manager</tt> configmap on the master node(s): <pre> \"extendedArguments\": { ... \"root-ca-file\": [ \"/etc/kubernetes/static-pod-resources/configmaps/serviceaccount-ca/ca-bundle.crt\" ], ... </pre>",
+            "remarks": "rule_set_062"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "controller_service_account_private_key",
+            "remarks": "rule_set_063"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the API Server utilizes its own key pair, set the <tt>privateKeyFile</tt> parameter to the public key file for service accounts in the <tt>openshift-kube-controller-manager</tt> configmap on the master node(s): <pre> \"extendedArguments\": { ... \"service-account-private-key-file\": [ \"/etc/kubernetes/static-pod-resources/secrets/service-account-private-key/service-account.key\" ], ... </pre>",
+            "remarks": "rule_set_063"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "controller_use_service_account",
+            "remarks": "rule_set_064"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure individual service account credentials are used, set the <tt>use-service-account-credentials</tt> option to <tt>true</tt> in the <tt>openshift-kube-controller-manager</tt> configmap on the master node(s): <pre> \"extendedArguments\": { ... \"use-service-account-credentials\": [ \"true\" ], ... </pre>",
+            "remarks": "rule_set_064"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "default_ingress_ca_replaced",
+            "remarks": "rule_set_065"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Check that the default Ingress CA has been replaced.",
+            "remarks": "rule_set_065"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_auto_tls",
+            "remarks": "rule_set_066"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the <tt>etcd</tt> service is not using self-signed certificates, run the following command: <pre>$ oc get cm/etcd-pod -n openshift-etcd -o yaml</pre> The etcd pod configuration contained in the configmap should not contain the <tt>--auto-tls=true</tt> flag.",
+            "remarks": "rule_set_066"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_cert_file",
+            "remarks": "rule_set_067"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the etcd service is serving TLS to clients, make sure the <tt>etcd-pod*</tt> ConfigMaps in the <tt>openshift-etcd</tt> namespace contain the following argument for the <tt>etcd</tt> binary in the <tt>etcd</tt> pod: <pre>--cert-file=/etc/kubernetes/static-pod-certs/secrets/etcd-all-[a-z]+/etcd-serving-NODE_NAME.crt</pre>. Note that the <pre>[a-z]+</pre> is being used since the directory might change between OpenShift versions.",
+            "remarks": "rule_set_067"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_client_cert_auth",
+            "remarks": "rule_set_068"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the <tt>etcd</tt> service is serving TLS to clients, make sure the <tt>etcd-pod*</tt> <tt>ConfigMaps</tt> in the <tt>openshift-etcd</tt> namespace contain the following argument for the <tt>etcd</tt> binary in the <tt>etcd</tt> pod: <pre>oc get -nopenshift-etcd cm etcd-pod -oyaml | grep \"\\-\\-client-cert-auth=\"</pre> the parameter should be set to <tt>true</tt>.",
+            "remarks": "rule_set_068"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_key_file",
+            "remarks": "rule_set_069"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the etcd service is serving TLS to clients, make sure the <tt>etcd-pod*</tt> ConfigMaps in the <tt>openshift-etcd</tt> namespace contain the following argument for the <tt>etcd</tt> binary in the <tt>etcd</tt> pod: <pre>oc get -nopenshift-etcd cm etcd-pod -oyaml | grep \"\\-\\-key-file=/etc/kubernetes/static-pod-certs/secrets/etcd-all-[a-z]+/etcd-serving-NODE_NAME.key\"</pre>. Note that the <pre>[a-z]+</pre> is being used since the directory might change between OpenShift versions.",
+            "remarks": "rule_set_069"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_peer_auto_tls",
+            "remarks": "rule_set_070"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the <tt>etcd</tt> service is not using self-signed certificates, run the following command: <pre>$ oc get cm/etcd-pod -n openshift-etcd -o yaml</pre> The etcd pod configuration contained in the configmap should not contain the <tt>--peer-auto-tls=true</tt> flag.",
+            "remarks": "rule_set_070"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_peer_cert_file",
+            "remarks": "rule_set_071"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the etcd service is serving TLS to peers, make sure the <tt>etcd-pod*</tt> ConfigMaps in the <tt>openshift-etcd</tt> namespace contain the following argument for the <tt>etcd</tt> binary in the <tt>etcd</tt> pod: <pre>--peer-cert-file=/etc/kubernetes/static-pod-certs/secrets/etcd-all-[a-z]+/etcd-peer-NODE_NAME.crt</pre> Note that the <pre>[a-z]+</pre> is being used since the directory might change between OpenShift versions.",
+            "remarks": "rule_set_071"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_peer_client_cert_auth",
+            "remarks": "rule_set_072"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the <tt>etcd</tt> service is serving TLS to clients, make sure the <tt>etcd-pod*</tt> <tt>ConfigMaps</tt> in the <tt>openshift-etcd</tt> namespace contain the following argument for the <tt>etcd</tt> binary in the <tt>etcd</tt> pod: <pre>oc get -nopenshift-etcd cm etcd-pod -oyaml | grep \"\\-\\-peer-client-cert-auth=\"</pre> the parameter should be set to <tt>true</tt>.",
+            "remarks": "rule_set_072"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "etcd_peer_key_file",
+            "remarks": "rule_set_073"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the etcd service is serving TLS to peers, make sure the <tt>etcd-pod*</tt> ConfigMaps in the <tt>openshift-etcd</tt> namespace contain the following argument for the <tt>etcd</tt> binary in the <tt>etcd</tt> pod: <pre>oc get -nopenshift-etcd cm etcd-pod -oyaml | grep \"\\-\\-peer-key-file=/etc/kubernetes/static-pod-certs/secrets/etcd-all-[a-z]+/etcd-peer-NODE_NAME.key\"</pre> Note that the <pre>[a-z]+</pre> is being used since the directory might change between OpenShift versions.",
+            "remarks": "rule_set_073"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "file_groupowner_proxy_kubeconfig",
+            "remarks": "rule_set_074"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the Kubernetes ConfigMap is mounted into the sdn daemonset pods with the correct ownership, make sure that the <tt>sdn-config</tt> ConfigMap is mounted using a ConfigMap at the <tt>/config</tt> mount point and that the <tt>sdn</tt> container points to that configuration using the <tt>--proxy-config</tt> command line option. Run: <pre> oc get -nopenshift-sdn ds sdn -ojson | jq -r '.spec.template.spec.containers[] | select(.name == \"sdn\")'</pre> and ensure the <tt>--proxy-config</tt> parameter points to <tt>/config/kube-proxy-config.yaml</tt> and that the <tt>config</tt> mount point is mounted from the <tt>sdn-config</tt> ConfigMap.",
+            "remarks": "rule_set_074"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "file_integrity_exists",
+            "remarks": "rule_set_075"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.7/security/file_integrity_operator/file-integrity-operator-understanding.html'>The File Integrity Operator</a> continually runs file integrity checks on the cluster nodes. It deploys a daemon set that initializes and runs privileged AIDE containers on each node, providing a status object with a log of files that are modified during the initial run of the daemon set pods.",
+            "remarks": "rule_set_075"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "file_integrity_notification_enabled",
+            "remarks": "rule_set_076"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The OpenShift platform provides the File Integrity Operator to monitor for unwanted file changes, and this control ensures proper notification alert is enabled so that system administrators and security personnel are notified about the alerts",
+            "remarks": "rule_set_076"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "file_owner_proxy_kubeconfig",
+            "remarks": "rule_set_077"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the Kubernetes ConfigMap is mounted into the sdn daemonset pods with the correct ownership, make sure that the <tt>sdn-config</tt> ConfigMap is mounted using a ConfigMap at the <tt>/config</tt> mount point and that the <tt>sdn</tt> container points to that configuration using the <tt>--proxy-config</tt> command line option. Run: <pre> oc get -nopenshift-sdn ds sdn -ojson | jq -r '.spec.template.spec.containers[] | select(.name == \"sdn\")'</pre> and ensure the <tt>--proxy-config</tt> parameter points to <tt>/config/kube-proxy-config.yaml</tt> and that the <tt>config</tt> mount point is mounted from the <tt>sdn-config</tt> ConfigMap.",
+            "remarks": "rule_set_077"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "file_permissions_proxy_kubeconfig",
+            "remarks": "rule_set_078"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the Kubernetes ConfigMap is mounted into the sdn daemonset pods with the correct permissions, make sure that the <tt>sdn-config</tt> ConfigMap is mounted using restrictive permissions. Check that the <tt>config</tt> VolumeMount mounts the <tt>sdn-config</tt> configMap with permissions set to 420: <pre> { \"configMap\": { \"defaultMode\": 420, \"name\": \"sdn-config\" }, \"name\": \"config\" } </pre>",
+            "remarks": "rule_set_078"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "fips_mode_enabled_on_all_nodes",
+            "remarks": "rule_set_079"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift has an installation-time flag that can enable FIPS mode for the cluster. The flag <pre>fips: true</pre> must be enabled at install time in the <pre>install-config.yaml</pre> file.",
+            "remarks": "rule_set_079"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "general_apply_scc",
+            "remarks": "rule_set_080"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Apply Security Context to your Pods and Containers",
+            "remarks": "rule_set_080"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "general_configure_imagepolicywebhook",
+            "remarks": "rule_set_081"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift administrators can control which images can be imported, tagged, and run in a cluster. There are two facilities for this purpose: (1) Allowed Registries, allowing administrators to restrict image origins to known external registries; and (2) ImagePolicy Admission plug-in which lets administrators specify specific images which are allowed to run on the OpenShift cluster. Configure an Image policy per the Image Policy chapter in the OpenShift documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.4/openshift_images/image-configuration.html'>https://docs.openshift.com/container-platform/4.4/openshift_images/image-configuration.html</a>",
+            "remarks": "rule_set_081"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "general_default_namespace_use",
+            "remarks": "rule_set_082"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Kubernetes provides a default namespace, where objects are placed if no namespace is specified for them. Placing objects in this namespace makes application of RBAC and other controls more difficult.",
+            "remarks": "rule_set_082"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "general_default_seccomp_profile",
+            "remarks": "rule_set_083"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Enable <tt>default</tt> seccomp profiles in your pod definitions.",
+            "remarks": "rule_set_083"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "general_namespaces_in_use",
+            "remarks": "rule_set_084"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Use namespaces to isolate your Kubernetes objects.",
+            "remarks": "rule_set_084"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "gitops_operator_exists",
+            "remarks": "rule_set_085"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Red Hat OpenShift GitOps is a declarative continuous delivery platform based on Argo CD. It enables teams to adopt GitOps principles for managing cluster configurations and automating secure and repeatable application delivery across hybrid multi-cluster Kubernetes environments. Following GitOps and infrastructure as code principles, you can store the configuration of clusters and applications in Git repositories and use Git workflows to roll them out to the target clusters.",
+            "remarks": "rule_set_085"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "idp_is_configured",
+            "remarks": "rule_set_086"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> For users to interact with OpenShift Container Platform, they must first authenticate to the cluster. The authentication layer identifies the user associated with requests to the OpenShift Container Platform API. The authorization layer then uses information about the requesting user to determine if the request is allowed. <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.6/logging/cluster-logging-external.html'>Understanding authentication | Authentication | OpenShift Container Platform</a> </p> <p> The OpenShift Container Platform includes a built-in OAuth server for token-based authentication. Developers and administrators obtain OAuth access tokens to authenticate themselves to the API. It is recommended for an administrator to configure OAuth to specify an identity provider after the cluster is installed. User access to the cluster is managed through the identity provider. <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.6/authentication/understanding-identity-provider.html'>Understanding identity provider configuration | Authentication | OpenShift Container Platform</a> </p> <p> OpenShift includes built-in role based access control (RBAC) to determine whether a user is allowed to perform a given action within the cluster. Roles can have cluster scope or local (i.e. project) scope. <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.6/authentication/using-rbac.html'>Using RBAC to define and apply permissions | Authentication | OpenShift Container Platform</a> </p>",
+            "remarks": "rule_set_086"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ingress_controller_certificate",
+            "remarks": "rule_set_087"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Check that the default Ingress certificate has been replaced.",
+            "remarks": "rule_set_087"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ingress_controller_tls_security_profile",
+            "remarks": "rule_set_088"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> The configuration <tt>tlsSecurityProfile</tt> specifies TLS configurations to be used while establishing connections with the externally exposed servers. Though secure transport mode is used for establishing connections, the protocols used may not always be strong enough to avoid interception and manipulation of the data in transport. TLS Security profile configured should not make use of any protocols, ciphers, and algorithms with known security vulnerabilities. </p> <p> <tt>tlsSecurityProfile</tt> can be configured to use one of custom, intermediate, modern, or old profile. Profile Old should be avoided at all times and when using custom profile one should be extremely careful as invalid configurations can be catastrophic. It is always advised to use highly secure intermediate or modern profiles and if unset profile configured in apiservers.config.openshift.io/cluster resource will be used as default. </p> <p> To update tlsSecurityProfile to Intermediate use the following command: <pre>oc patch -n openshift-ingress-operator ingresscontrollers.operator.openshift.io default --type 'json' --patch '[{\"op\": \"add\", \"path\": \"/spec/tlsSecurityProfile/intermediate\", \"value\": {}}, {\"op\": \"replace\", \"path\": \"/spec/tlsSecurityProfile/type\", \"value\": \"Intermediate\"}'</pre> </p> <p> For more information, follow OpenShift documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/security/tls-security-profiles.html'>the relevant documentation</a>. </p>",
+            "remarks": "rule_set_088"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "kubeadmin_removed",
+            "remarks": "rule_set_089"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The kubeadmin user is meant to be a temporary user used for bootstrapping purposes. It is preferable to assign system administrators whose users are backed by an Identity Provider. <br /> Make sure to remove the user as <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/authentication/remove-kubeadmin.html'>described in the documentation</a>",
+            "remarks": "rule_set_089"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "kubelet_configure_tls_cert",
+            "remarks": "rule_set_090"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the kubelet TLS client certificate is configured, edit the kubelet configuration file <tt>/etc/kubernetes/kubelet.conf</tt> and configure the kubelet certificate file. <pre>tlsCertFile: /path/to/TLS/cert.key</pre>",
+            "remarks": "rule_set_090"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "kubelet_configure_tls_cert_pre_4_9",
+            "remarks": "rule_set_091"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the kubelet TLS client certificate is configured, edit the kubelet configuration file <tt>/etc/kubernetes/kubelet.conf</tt> and configure the kubelet certificate file. <pre>tlsCertFile: /path/to/TLS/cert.key</pre> <pre> Note that this particular rule is only valid for OCP releases up to and including 4.8 </pre>",
+            "remarks": "rule_set_091"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "kubelet_configure_tls_cipher_suites_ingresscontroller",
+            "remarks": "rule_set_092"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Ensure that the Ingress Controller is configured to only use strong cryptographic ciphers.",
+            "remarks": "rule_set_092"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "kubelet_configure_tls_key",
+            "remarks": "rule_set_093"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To ensure the kubelet TLS private server key certificate is configured, edit the kubelet configuration file <tt>/etc/kubernetes/kubelet.conf</tt> and configure the kubelet private key file. <pre>tlsPrivateKeyFile: /path/to/TLS/private.key</pre>",
+            "remarks": "rule_set_093"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "kubelet_disable_readonly_port",
+            "remarks": "rule_set_094"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To disable the read-only port, edit the kubelet configuration Edit the <tt>openshift-kube-apiserver</tt> configmap and set the <tt>kubelet-read-only-port</tt> parameter to 0: <pre> \"apiServerArguments\":{ ... \"kubelet-read-only-port\":[ \"0\" ], ... </pre>",
+            "remarks": "rule_set_094"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "oauth_or_oauthclient_inactivity_timeout",
+            "remarks": "rule_set_095"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> You can configure OAuth tokens to expire after a set period of inactivity. By default, no token inactivity timeout is set. </p> <p> The inactivity timeout can be either set in the OAuth server configuration or in any of the OAuth clients. The client settings override the OAuth server setting. </p> <p> To set the OAuth server inactivity timeout, edit the OAuth server object: <tt>oc edit oauth cluster</tt> and set the <tt>.spec.tokenConfig.accessTokenInactivityTimeout</tt> parameter to the desired value: <pre> apiVersion: config.openshift.io/v1 kind: OAuth metadata: ... spec: tokenConfig: accessTokenInactivityTimeout: 10m0s <pre> Please note that the OAuth server converts the value internally to a human-readable format, so that e.g. setting accessTokenInactivityTimeout=600s would be converted by the OAuth server to accessTokenInactivityTimeout=10m0s. </pre> </pre> For more information on configuring the OAuth server, consult the OpenShift documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.7/authentication/configuring-oauth-clients.html'>https://docs.openshift.com/container-platform/4.7/authentication/configuring-oauth-clients.html</a> </p> <p> To edit the OAuth client inactivity timeout, edit the OAuth client object: <tt>oc edit oauthclient $clientname</tt> and set the top-level <tt>accessTokenInactivityTimeoutSeconds</tt> attribute. <pre> apiVersion: oauth.openshift.io/v1 grantMethod: auto kind: OAuthClient metadata: ... accessTokenInactivityTimeoutSeconds: 600 </pre> For more information on configuring the OAuth clients, consult the OpenShift documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://access.redhat.com/documentation/en-us/openshift_container_platform/4.7/html-single/authentication_and_authorization/index#oauth-token-inactivity-timeout_configuring-internal-oauth'>https://access.redhat.com/documentation/en-us/openshift_container_platform/4.7/html-single/authentication_and_authorization/index#oauth-token-inactivity-timeout_configuring-internal-oauth</a> </p>",
+            "remarks": "rule_set_095"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "oauth_or_oauthclient_token_maxage",
+            "remarks": "rule_set_096"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> You can configure OAuth tokens to have have a custom duration. By default, the tokens are valid for 24 hours (86400 seconds). </p> <p> The maximum age can be either set in the OAuth server configuration or in any of the OAuth clients. The client settings override the OAuth server setting. </p> <p> To set the OAuth server token max age, edit the OAuth server object: <tt>oc edit oauth cluster</tt> and set the <tt>.spec.tokenConfig.accessTokenMaxAgeSeconds</tt> parameter to the desired value: <pre> apiVersion: config.openshift.io/v1 kind: OAuth metadata: ... spec: tokenConfig: accessTokenMaxAgeSeconds: 28800 </pre> </p> <p> To set the OAuth client token max age, edit the OAuth client object: <tt>oc edit oauthclient $clientname</tt> and set the top-level <tt>accessTokenMaxAgeSeconds</tt> attribute. <pre> apiVersion: oauth.openshift.io/v1 grantMethod: auto kind: OAuthClient metadata: ... accessTokenMaxAgeSeconds: 28800 </pre> For more information on configuring the OAuth server, consult the OpenShift documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.7/authentication/configuring-internal-oauth.html'>https://docs.openshift.com/container-platform/4.7/authentication/configuring-internal-oauth.html</a> </p>",
+            "remarks": "rule_set_096"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_allowed_registries",
+            "remarks": "rule_set_097"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The configuration <tt>registrySources.allowedRegistries</tt> determines the permitted registries that the OpenShift container runtime can access for builds and pods. This configuration setting ensures that all registries other than those specified are blocked. You can set the allowed repositories by applying the following manifest using <pre>oc patch</pre>, e.g. if you save the following snippet to <pre>/tmp/allowed-registries-patch.yaml</pre> <pre> spec: registrySources: allowedRegistries: - my-trusted-registry.internal.example.com </pre> you would call <pre>oc patch image.config.openshift.io cluster --patch=\"$(cat /tmp/allowed-registries-patch.yaml)\" --type=merge</pre>",
+            "remarks": "rule_set_097"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_allowed_registries_for_import",
+            "remarks": "rule_set_098"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The configuration <tt>allowedRegistriesForImport</tt> limits the container image registries from which normal users may import images. This is important to control, as a user who can stand up a malicious registry can then import content which claims to include the SHAs of legitimate content layers. You can set the allowed repositories for import by applying the following manifest using <pre>oc patch</pre>, e.g. if you save the following snippet to <pre>/tmp/allowed-import-registries-patch.yaml</pre> <pre> spec: allowedRegistriesForImport: - domainName: my-trusted-registry.internal.example.com insecure: false </pre> you would call <pre>oc patch image.config.openshift.io cluster --patch=\"$(cat /tmp/allowed-import-registries-patch.yaml)\" --type=merge</pre>",
+            "remarks": "rule_set_098"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_api_server_audit_log_maxbackup",
+            "remarks": "rule_set_099"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To configure how many rotations of audit logs are retained, edit the <tt>openshift-apiserver</tt> configmap and set the <tt>audit-log-maxbackup</tt> parameter to <tt>10</tt> or to an organizationally appropriate value: <pre> \"apiServerArguments\":{ ... \"audit-log-maxbackup\": [10], ... </pre>",
+            "remarks": "rule_set_099"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_api_server_audit_log_maxsize",
+            "remarks": "rule_set_100"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To rotate audit logs upon reaching a maximum size, edit the <tt>openshift-apiserver</tt> configmap and set the <tt>audit-log-maxsize</tt> parameter to an appropriate size in MB. For example, to set it to 100 MB: <pre> \"apiServerArguments\":{ ... \"audit-log-maxsize\": [\"100\"], ... </pre>",
+            "remarks": "rule_set_100"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_idp_no_htpasswd",
+            "remarks": "rule_set_101"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> For users to interact with OpenShift Container Platform, they must first authenticate to the cluster. The authentication layer identifies the user associated with requests to the OpenShift Container Platform API. The authorization layer then uses information about the requesting user to determine if the request is allowed. <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/logging/cluster-logging-external.html'>Understanding authentication | Authentication | OpenShift Container Platform</a> </p> <p> The OpenShift Container Platform includes a built-in OAuth server for token-based authentication. Developers and administrators obtain OAuth access tokens to authenticate themselves to the API. It is recommended for an administrator to configure OAuth to specify an identity provider after the cluster is installed. User access to the cluster is managed through the identity provider. <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/authentication/understanding-identity-provider.html'>Understanding identity provider configuration | Authentication | OpenShift Container Platform</a> </p> <p> However, not all Identity Providers supported by OpenShift provide the same level of capabilities. As an example, the htpasswd Identity Provider only checks the username and password match and provides no means of 2FA, account lockout or notification mechanism. This rule therefore only allows a subset of identity providers. </p>",
+            "remarks": "rule_set_101"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_insecure_allowed_registries_for_import",
+            "remarks": "rule_set_102"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The configuration <tt>allowedRegistriesForImport</tt> limits the container image registries from which normal users may import images. This is a list of the registries that can be trusted to contain valid images and the image location configured is assumed to be secured unless configured otherwise. It is important to allow only secure registries to avoid man in the middle attacks, as the insecure image import request can be impersonated and could lead to fetching malicious content. List all the allowed repositories for import configured with insecure set to true using the following command: <pre>oc get image.config.openshift.io/cluster -o json | jq '.spec | (.allowedRegistriesForImport[])? | select(.insecure==true)'</pre> Remove or edit the listed registries having insecure set by using the command: <pre>oc edit image.config.openshift.io/cluster</pre> For more information, follow <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/openshift_images/image-configuration.html'>the relevant documentation</a>.",
+            "remarks": "rule_set_102"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_insecure_registries",
+            "remarks": "rule_set_103"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The configuration <tt>registrySources.insecureRegistries</tt> determines the insecure registries that the OpenShift container runtime can access for builds and pods. This configuration setting is for accessing the configured registries without TLS validation which could lead to security breaches and should be avoided. Remove any insecureRegistries configured using the following command: <pre>oc patch image.config.openshift.io cluster --type=json -p \"[{'op': 'remove', 'path': '/spec/registrySources/insecureRegistries'}]\"</pre> For more information, follow <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/openshift_images/image-configuration.html'>the relevant documentation</a>.",
+            "remarks": "rule_set_103"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "ocp_no_ldap_insecure",
+            "remarks": "rule_set_104"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> For users to interact with OpenShift Container Platform, they must first authenticate to the cluster. The authentication layer identifies the user associated with requests to the OpenShift Container Platform API. The authorization layer then uses information about the requesting user to determine if the request is allowed. <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/logging/cluster-logging-external.html'>Understanding authentication | Authentication | OpenShift Container Platform</a> </p> <p> The OpenShift Container Platform includes a built-in OAuth server for token-based authentication. Developers and administrators obtain OAuth access tokens to authenticate themselves to the API. It is recommended for an administrator to configure OAuth to specify an identity provider after the cluster is installed. User access to the cluster is managed through the identity provider. <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/authentication/understanding-identity-provider.html'>Understanding identity provider configuration | Authentication | OpenShift Container Platform</a> </p> <p> If the identity provider is LDAP, setting the <tt>insecure</tt> flag to true would mean that passwords, such as the one used to authenticate the OAuth proxy to the LDAP server would be transmitted in the clear, potentially allowing an attacker to read the password if they captured the network traffic. </p>",
+            "remarks": "rule_set_104"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "openshift_api_server_audit_log_path",
+            "remarks": "rule_set_105"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To enable auditing on the OpenShift API Server, the audit log path must be set. Edit the <tt>openshift-apiserver</tt> configmap and set the <tt>audit-log-path</tt> to a suitable path and file where audit logs should be written. For example: <pre> \"apiServerArguments\":{ ... \"audit-log-path\":\"/var/log/openshift-apiserver/audit.log\", ... </pre>",
+            "remarks": "rule_set_105"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "openshift_motd_exists",
+            "remarks": "rule_set_106"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "To configure OpenShift's MOTD, create a <b>ConfigMap</b> called <tt>motd</tt> in the <tt>openshift</tt> namespace. The object should look as follows: <pre> --- apiVersion: v1 kind: ConfigMap metadata: name: motd namespace: openshift data: message: \"A relevant MOTD\" </pre> Where <tt>message</tt> is a mandatory key. The DoD required text is either: <br /><br /> <tt>You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only. By using this IS (which includes any device attached to this IS), you consent to the following conditions: <br />-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations. <br />-At any time, the USG may inspect and seize data stored on this IS. <br />-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose. <br />-This IS includes security measures (e.g., authentication and access controls) to protect USG interests -- not for your personal benefit or privacy. <br />-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.</tt> <br /><br /> OR: <br /><br /> <tt>I've read &amp; consent to terms in IS user agreement.</tt>",
+            "remarks": "rule_set_106"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "rbac_debug_role_protects_pprof",
+            "remarks": "rule_set_107"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Ensure that the cluster-debugger cluster role includes the /debug/pprof resource URL. This demonstrates that profiling is protected by RBAC, with a specific cluster role to allow access.",
+            "remarks": "rule_set_107"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "rbac_least_privilege",
+            "remarks": "rule_set_108"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Role-based access control (RBAC) objects determine whether a user is allowed to perform a given action within a project. If users or groups exist that are bound to roles they must not have, modify the user or group permissions using the following cluster and local role binding commands: Remove a User from a Cluster RBAC role by executing the following: oc adm policy remove-cluster-role-from-user role username Remove a Group from a Cluster RBAC role by executing the following: oc adm policy remove-cluster-role-from-group role groupname Remove a User from a Local RBAC role by executing the following: oc adm policy remove-role-from-user role username Remove a Group from a Local RBAC role by executing the following: oc adm policy remove-role-from-group role groupname NOTE: For additional information. https://docs.openshift.com/container-platform/latest/authentication/using-rbac.html",
+            "remarks": "rule_set_108"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "rbac_limit_cluster_admin",
+            "remarks": "rule_set_109"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The RBAC role cluster-admin provides wide-ranging powers over the environment and should be used only where and when needed.",
+            "remarks": "rule_set_109"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "rbac_limit_secrets_access",
+            "remarks": "rule_set_110"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The Kubernetes API stores secrets, which may be service account tokens for the Kubernetes API or credentials used by workloads in the cluster. Access to these secrets should be restricted to the smallest possible group of users to reduce the risk of privilege escalation. To restrict users from secrets, remove <tt>get</tt>, <tt>list</tt>, and <tt>watch</tt> access to unauthorized users to secret objects in the cluster.",
+            "remarks": "rule_set_110"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "rbac_pod_creation_access",
+            "remarks": "rule_set_111"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "The ability to create pods in a namespace can provide a number of opportunities for privilege escalation. Where applicable, remove <tt>create</tt> access to <tt>pod</tt> objects in the cluster.",
+            "remarks": "rule_set_111"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "rbac_wildcard_use",
+            "remarks": "rule_set_112"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Kubernetes Cluster and Local Roles provide access to resources based on sets of objects and actions that can be taken on those objects. It is possible to set either of these using a wildcard <tt>*</tt> which matches all items. This violates the principle of least privilege and leaves a cluster in a more vulnerable state to privilege abuse.",
+            "remarks": "rule_set_112"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "resource_requests_limits_in_daemonset",
+            "remarks": "rule_set_113"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "When deploying an application, it is important to tune based on memory and CPU consumption, allocating enough resources for the application to function properly. Images provided by OpenShift Dedicated behave properly within the confines of the memory they are allocated. However, any application images must pay attention to the specific resources required to ensure they are available. If the node where a Pod is running has enough of a resource available, it's possible (and allowed) for a container to use more resource than its request for that resource specifies. However, a container is not allowed to use more than its resource limit.",
+            "remarks": "rule_set_113"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "resource_requests_limits_in_deployment",
+            "remarks": "rule_set_114"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "When deploying an application, it is important to tune based on memory and CPU consumption, allocating enough resources for the application to function properly. Images provided by OpenShift Dedicated behave properly within the confines of the memory they are allocated. However, any application images must pay attention to the specific resources required to ensure they are available. If the node where a Pod is running has enough of a resource available, it's possible (and allowed) for a container to use more resource than its request for that resource specifies. However, a container is not allowed to use more than its resource limit.",
+            "remarks": "rule_set_114"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "resource_requests_limits_in_statefulset",
+            "remarks": "rule_set_115"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "When deploying an application, it is important to tune based on memory and CPU consumption, allocating enough resources for the application to function properly. Images provided by OpenShift Dedicated behave properly within the confines of the memory they are allocated. However, any application images must pay attention to the specific resources required to ensure they are available. If the node where a Pod is running has enough of a resource available, it's possible (and allowed) for a container to use more resource than its request for that resource specifies. However, a container is not allowed to use more than its resource limit.",
+            "remarks": "rule_set_115"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "resource_requests_quota",
+            "remarks": "rule_set_116"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "There are two ways to enable resource requests and limits. To create either: A multi-project quota, defined by a ClusterResourceQuota object, allows quotas to be shared across multiple projects. Resources used in each selected project are aggregated and that aggregate is used to limit resources across all the selected projects. A resource quota, defined by a ResourceQuota object, provides constraints that limit aggregate resource consumption per project. It can limit the quantity of objects that can be created in a project by type, as well as the total amount of compute resources and storage that might be consumed by resources in that project. We want to make sure either a ClusterResourceQuota is used in a cluster or a ResourceQuota is used per namespaces. <p> To configure ClusterResourceQuota, follow the directions in <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-across-multiple-projects.html'>the documentation</a> </p> <p> To configure ResourceQuota Per Project, follow the directions in <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/4.9/applications/quotas/quotas-setting-per-project.html'>the documentation</a> </p>",
+            "remarks": "rule_set_116"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "route_ip_whitelist",
+            "remarks": "rule_set_117"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift has an option to set the IP whitelist for Routes [1] when creating new Routes. All routes outside the openshift namespaces and the kube namespaces should use the IP whitelist annotations. Requests from IP addresses that are not in the whitelist are dropped. [1] https://docs.openshift.com/container-platform/latest/networking/routes/route-configuration.html#nw-route-specific-annotations_route-configuration",
+            "remarks": "rule_set_117"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "routes_protected_by_tls",
+            "remarks": "rule_set_118"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift Container Platform provides methods for communicating from outside the cluster with services running in the cluster. TLS must be used to protect these communications. OpenShift Routes provide the ability to configure the needed TLS settings. With these, one is able to configure that any request coming from the outside must use TLS. To verify this, ensure that every Route in the system has a policy of <tt>Disable</tt> or <tt>Redirect</tt> to ensure a secure endpoint is used. The aforementioned policy will be set in a Routes <tt>.spec.tls.insecureEdgeTerminationPolicy</tt> setting.",
+            "remarks": "rule_set_118"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "routes_rate_limit",
+            "remarks": "rule_set_119"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "OpenShift has an option to set the rate limit for Routes [1] when creating new Routes. All routes outside the openshift namespaces and the kube namespaces should use the rate-limiting annotations. [1] https://docs.openshift.com/container-platform/4.9/networking/routes/route-configuration.html#nw-route-specific-annotations_route-configuration",
+            "remarks": "rule_set_119"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scansettingbinding_exists",
+            "remarks": "rule_set_120"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/security/compliance_operator/compliance-operator-understanding.html#compliance-operator-understanding'>The Compliance Operator</a> scans the hosts and the platform (OCP) configurations for software flaws and improper configurations according to different compliance benchmarks. It uses OpenSCAP as a backend, which is a known and certified tool to do such scans.",
+            "remarks": "rule_set_120"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_drop_container_capabilities",
+            "remarks": "rule_set_121"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should not enable more capabilities than needed as this opens the door for malicious use. To disable the capabilities, the appropriate Security Context Constraints (SCCs) should set all capabilities as <tt>*</tt> or a list of capabilities in <tt>requiredDropCapabilities</tt>.",
+            "remarks": "rule_set_121"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_container_allowed_capabilities",
+            "remarks": "rule_set_122"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "<p> Containers should not enable more capabilites than needed as this opens the door for malicious use. To enable only the required capabilities, the appropriate Security Context Constraints (SCCs) should set capabilities as a list in <tt>allowedCapabilities</tt>. </p> <p> In case an SCC outside the default allow list in the variable <tt>var-sccs-with-allowed-capabilities-regex</tt> is being flagged, create a <tt>TailoredProfile</tt> and add the additional SCC to the regular expression in the variable <tt>var-sccs-with-allowed-capabilities-regex</tt>. An example allowing an SCC named <tt>additional</tt> follows: </p> <pre> apiVersion: compliance.openshift.io/v1alpha1 kind: TailoredProfile metadata: name: cis-additional-scc spec: description: Allows an additional scc setValues: - name: ocp4-var-sccs-with-allowed-capabilities-regex rationale: Allow our own custom SCC value: ^privileged$|^hostnetwork-v2$|^restricted-v2$|^nonroot-v2$|^additional$ extends: ocp4-cis title: Modified CIS allowing one more SCC </pre> <p> Finally, reference this <tt>TailoredProfile</tt> in a <tt>ScanSettingBinding</tt> For more information on Tailoring the Compliance Operator, please consult the OpenShift documentation: <a xmlns='http://www.w3.org/1999/xhtml' href='https://docs.openshift.com/container-platform/latest/security/compliance_operator/co-scans/compliance-operator-tailor.html'>https://docs.openshift.com/container-platform/latest/security/compliance_operator/co-scans/compliance-operator-tailor.html</a> </p>",
+            "remarks": "rule_set_122"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_ipc_namespace",
+            "remarks": "rule_set_123"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should not be allowed access to the host's Interprocess Communication (IPC) namespace. To prevent containers from getting access to a host's IPC namespace, the appropriate Security Context Constraints (SCCs) should set <tt>allowHostIPC</tt> to <tt>false</tt>.",
+            "remarks": "rule_set_123"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_net_raw_capability",
+            "remarks": "rule_set_124"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should not enable more capabilities than needed as this opens the door for malicious use. <tt>CAP_NET_RAW</tt> enables a container to launch a network attack on another container or cluster. To disable the <tt>CAP_NET_RAW</tt> capability, the appropriate Security Context Constraints (SCCs) should set <tt>NET_RAW</tt> in <tt>requiredDropCapabilities</tt>.",
+            "remarks": "rule_set_124"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_network_namespace",
+            "remarks": "rule_set_125"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should not be allowed access to the host's network namespace. To prevent containers from getting access to a host's network namespace, the appropriate Security Context Constraints (SCCs) should set <tt>allowHostNetwork</tt> to <tt>false</tt>.",
+            "remarks": "rule_set_125"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_privilege_escalation",
+            "remarks": "rule_set_126"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should be limited to only the privileges required to run and should not be allowed to escalate their privileges. To prevent containers from escalating privileges, the appropriate Security Context Constraints (SCCs) should set <tt>allowPrivilegeEscalation</tt> to <tt>false</tt>.",
+            "remarks": "rule_set_126"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_privileged_containers",
+            "remarks": "rule_set_127"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should be limited to only the privileges required to run. To prevent containers from running as privileged containers, the appropriate Security Context Constraints (SCCs) should set <tt>allowPrivilegedContainer</tt> to <tt>false</tt>.",
+            "remarks": "rule_set_127"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_process_id_namespace",
+            "remarks": "rule_set_128"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should not be allowed access to the host's process ID namespace. To prevent containers from getting access to a host's process ID namespace, the appropriate Security Context Constraints (SCCs) should set <tt>allowHostPID</tt> to <tt>false</tt>.",
+            "remarks": "rule_set_128"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scc_limit_root_containers",
+            "remarks": "rule_set_129"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Containers should run as a random non-privileged user. To prevent containers from running as root user, the appropriate Security Context Constraints (SCCs) should set <tt>.runAsUser.type</tt> to <tt>MustRunAsRange</tt>.",
+            "remarks": "rule_set_129"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scheduler_profiling_protected_by_rbac",
+            "remarks": "rule_set_130"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Do not bind the scheduler service to non-loopback insecure addresses.",
+            "remarks": "rule_set_130"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "scheduler_service_protected_by_rbac",
+            "remarks": "rule_set_131"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Do not bind the scheduler service to non-loopback insecure addresses.",
+            "remarks": "rule_set_131"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "secrets_consider_external_storage",
+            "remarks": "rule_set_132"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Consider the use of an external secrets storage and management system, instead of using Kubernetes Secrets directly, if you have more complex secret management needs. Ensure the solution requires authentication to access secrets, has auditing of access to and use of secrets, and encrypts secrets. Some solutions also make it easier to rotate secrets.",
+            "remarks": "rule_set_132"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "secrets_no_environment_variables",
+            "remarks": "rule_set_133"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "Secrets should be mounted as data volumes instead of environment variables.",
+            "remarks": "rule_set_133"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "version_detect_in_hypershift",
+            "remarks": "rule_set_134"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "no description",
+            "remarks": "rule_set_134"
+          },
+          {
+            "name": "Rule_Id",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "version_detect_in_ocp",
+            "remarks": "rule_set_135"
+          },
+          {
+            "name": "Rule_Description",
+            "ns": "https://oscal-compass.github.io/compliance-trestle/schemas/oscal/cd",
+            "value": "no description",
+            "remarks": "rule_set_135"
+          }
+        ]
+      }
+    ]
+  }
+}
