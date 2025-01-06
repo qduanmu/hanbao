@@ -1,15 +1,15 @@
 {
   "component-definition": {
-    "uuid": "119b6f0a-50f4-4573-b332-f0f5880ee84d",
+    "uuid": "8f172fc9-4627-45f1-aa8b-0ef22711fda9",
     "metadata": {
       "title": "Component definition for ocp4",
-      "last-modified": "2025-01-06T17:18:33.518979+08:00",
+      "last-modified": "2025-01-06T17:37:05.746379+08:00",
       "version": "REPLACE_ME",
       "oscal-version": "1.1.2"
     },
     "components": [
       {
-        "uuid": "1c2438df-2656-4504-a6c8-108c13e516bb",
+        "uuid": "32947ada-9881-468e-ad76-24b148c0e3bd",
         "type": "service",
         "title": "ocp4",
         "description": "ocp4",
