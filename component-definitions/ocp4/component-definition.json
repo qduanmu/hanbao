@@ -1,15 +1,15 @@
 {
   "component-definition": {
-    "uuid": "76b4c2ba-3873-477e-83b6-222ebe667bce",
+    "uuid": "6314c021-e6f7-4b30-8034-f991b79a3fe3",
     "metadata": {
       "title": "Component definition for ocp4",
-      "last-modified": "2025-01-13T17:34:20.972881+08:00",
+      "last-modified": "2025-01-14T17:59:54.422753+08:00",
       "version": "1.0",
       "oscal-version": "1.1.2"
     },
     "components": [
       {
-        "uuid": "28faf5e3-ebd4-494d-a908-b874bee15a88",
+        "uuid": "0865a95d-63ea-492c-acdc-63d88aa7eff3",
         "type": "service",
         "title": "ocp4",
         "description": "Red Hat OpenShift Container Platform 4",
